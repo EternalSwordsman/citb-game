@@ -1,0 +1,74 @@
+@startuml
+
+package "Entities" {
+class Table {
+  - players: vector<Player>
+  - current_trick: Trick
+  - current_player_turn: int
+  - last_trick_winner: int
+  - card_display: CardDisplay
+}
+class ResearchBoard {
+  + display: Vec<Vec<Option<ResearchState>>>
+  + reset(player_count: u8)
+  + check_if_playable(card: &Card): bool
+  + mark_played(card: &Card, player_id: u8)
+  + check_if_trump_played(): bool
+}
+class Card {
+  - value: int
+  - suit: enum::suits
+}
+class Player {
+  - id: int
+  - cardsInHand: vector<Card>
+  - name: String
+  - score: int
+  - availableSuits: vector<enum::suits>
+  - bid: int
+  - tricksThisRound: int
+}
+class Trick {
+  - playedCards: pair<Card, Player>
+}
+}
+
+package "Use Cases" {
+class startRound{
+}
+class dealHand {
+  - dealHand(Table)
+}
+class playCard {
+  - playCard(Player, Trick, int::cardIndex)
+}
+class resolveTrick {
+  - resolveTrick(Trick)
+}
+class endRound {
+  - endRound(Table)
+}
+class checkParadox {
+  - checkParadox(Player, CardDisplay)
+}
+}
+
+package "Infrastructure" {
+}
+
+Player <-- Table
+Trick <-- Table
+Card <-- Player
+Card <-- Trick
+CardDisplay <-- Table
+
+Trick <-- resolveTrick
+Player <-- playCard
+Player <-- Trick
+Trick <-- playCard
+Table <-- dealHand
+Table <-- endRound
+resolveTrick <-- playCard
+endRound <-- resolveTrick
+dealHand <-- startRound
+@enduml
