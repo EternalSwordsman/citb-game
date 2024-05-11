@@ -2,11 +2,11 @@ use crate::card::Card;
 use crate::card::Suit;
 
 pub struct Player {
-    id: u8,
-    hand: Vec<Card>,
-    available_suits: Vec<Suit>,
-    score: u8,
-    name: String,
-    bid: u8,
-    tricks_this_round: u8,
+    pub id: u8,
+    pub hand: Vec<Card>,
+    pub available_suits: Vec<Suit>,
+    pub score: u8,
+    pub name: String,
+    pub bid: u8,
+    pub tricks_this_round: u8,
 }

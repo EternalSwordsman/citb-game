@@ -25,8 +25,8 @@ impl ResearchBoard {
             _ => 0, // TODO - this should error
         };
 
-        for suit in (0..4) {    // TODO - can we use the suit enum directly here?
-            for value in (1..=max_card_value) {
+        for suit in 0..4 {    // TODO - can we use the suit enum directly here?
+            for value in 1..=max_card_value {
                 self.display[suit][value as usize] = Some(ResearchState::Unplayed);  // TODO - don't like this cast
             }
         }
