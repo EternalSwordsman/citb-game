@@ -1,5 +1,5 @@
-use crate::card::Card;
-use crate::card::Suit;
+use crate::entities::card::Card;
+use crate::entities::card::Suit;
 
 pub struct Player {
     pub id: u8,

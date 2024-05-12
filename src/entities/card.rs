@@ -1,4 +1,4 @@
-#[derive(Clone,Copy)]
+#[derive(Clone,Copy,PartialEq)]
 pub enum Suit {
     Red,
     Green,
@@ -7,6 +7,7 @@ pub enum Suit {
     Black,
 }
 
+#[derive(Clone,Copy)]
 pub struct Card {
     pub value: u8,
     pub suit: Suit,
